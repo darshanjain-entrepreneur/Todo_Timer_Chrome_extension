@@ -9,13 +9,18 @@ chrome.alarms.onAlarm.addListener((alarm) => {
 chrome.storage.local.get(["timer" , "isRunning"] , (res) => {
     if(res.isRunning){
        let  timer = res.timer + 1;
-    //    if(timer === 25*60){
-    //     this.registration.showNotification("Todo Timer" , {
-            
-    //     })
-    //    }
+       let isRunning = true;
+       if(timer === 25*60){
+        this.registration.showNotification("Todo Timer" , {
+            body:"Hey I am Darshan Jain , Your  25 minutes have passed",
+            icon:"iconss.png",
+        })
+        timer = 0;
+        isRunning = false;
+       }
        chrome.storage.local.set({
         timer,
+        isRunning,
        })
     }
 })

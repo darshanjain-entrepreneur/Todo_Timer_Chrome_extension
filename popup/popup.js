@@ -4,8 +4,16 @@ let taskArray = [];
 
 function updateTime(){
 
-    chrome.storage.local.get(["timer"] , (res) => {
-        res.timer = 60*24
+    chrome.storage.local.get(["timer" , "isRunning"] , (res) => {
+
+        const checkstart = document.getElementById('start-timer-btn');
+       if(res.isRunning == true){
+        checkstart.textContent = "Pause Timer"
+       }else if(res.isRunning == false){
+        checkstart.textContent = "Start Timer"
+       }
+
+      
         const time = document.getElementById("time")
         const minutes = `${25 - Math.ceil( res.timer/60)}`.padStart(2 , "0")
         let seconds = "00";
