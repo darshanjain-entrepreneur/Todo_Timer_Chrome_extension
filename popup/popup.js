@@ -1,10 +1,20 @@
 
-const taskArray = [];
+let taskArray = [];
 
 
 const addTaskBtn = document.getElementById('add-task-btn');
 addTaskBtn.addEventListener('click', addTask);
 
+chrome.storage.sync.get(["taskArray"] , (res) => {
+    taskArray = res.taskArray ? res.taskArray: [];
+    renderTasks();
+})
+
+function saveTasks(){
+    chrome.storage.sync.set({
+        taskArray,
+    })
+}
 
 function renderTask(taskNum){
 
@@ -18,7 +28,8 @@ text.placeholder = "Enter Your Todo";
 text.value =taskArray[taskNum];
 
 text.addEventListener("change", () => {
-    taskArray[taskNum -1] = text.value;
+    taskArray[taskNum] = text.value;
+    saveTasks()
     console.log(taskArray);
 })
 
@@ -29,7 +40,7 @@ deleteBtn.value = "X";
 
 deleteBtn.addEventListener("click", () =>{
 deleteTask(taskNum)
-
+saveTasks()
 })
 
 taskRow.appendChild(text);
@@ -55,7 +66,7 @@ renderTask(taskNum);
 
 function deleteTask(taskNum){
 taskArray.splice(taskNum, 1);
-renderTasks();
+renderTasks(taskNum);
 
 }
 

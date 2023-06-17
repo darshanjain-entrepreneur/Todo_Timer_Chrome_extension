@@ -12,6 +12,7 @@
         "default_icon":"iconss.png",
         "default_title":"Todo Timer",
         "default_popup":"popup/popup.html"
-    }
+    },
+    "permissions":["storage"]
    
 }
