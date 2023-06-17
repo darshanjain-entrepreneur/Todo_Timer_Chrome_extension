@@ -59,7 +59,7 @@ function addTask(){
     const taskNum = taskArray.length;
 taskArray.push("");
 renderTask(taskNum);
-
+saveTasks();
 
 
 }
