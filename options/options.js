@@ -12,7 +12,7 @@ timeOption.addEventListener('change', function(event){
 const savebtn  = document.getElementById('save-btn');
 
 savebtn.addEventListener('click', () =>{
-
+   
     chrome.storage.local.set({
         timer:0,
         timeOption: timeOption.value,

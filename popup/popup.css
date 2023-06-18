@@ -88,7 +88,7 @@ font-weight: bold;
    overflow-y: scroll;
  align-items: center;
  scrollbar-color: linear-gradient(yellow , pink , green);
-
+margin-top: 8px;
 }
 
 
@@ -111,13 +111,14 @@ border: none;
     padding: 7px 8px 7px 8px;
     font-weight: 700;
     font-size: 1rem;
-
-
+    background:linear-gradient(to right , rgb(102, 164, 240) , rgb(244, 84, 145), rgb(244, 169, 227));
+color: black;
 }
 
 #task-container div .taskcontainer-text-area::placeholder{
-    color: black;
-        font-weight: 100;
+    color: white;
+        font-weight:lighter;
+       font-size: 0.8rem;
     
     }
 
