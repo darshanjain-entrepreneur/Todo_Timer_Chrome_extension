@@ -4,7 +4,7 @@ let taskArray = [];
 
 function updateTime(){
 
-    chrome.storage.local.get(["timer" , "isRunning"] , (res) => {
+    chrome.storage.local.get(["timer" , "isRunning" , "timeOption"] , (res) => {
 
         const checkstart = document.getElementById('start-timer-btn');
        if(res.isRunning == true){
@@ -15,7 +15,7 @@ function updateTime(){
 
       
         const time = document.getElementById("time")
-        const minutes = `${25 - Math.ceil( res.timer/60)}`.padStart(2 , "0")
+        const minutes = `${res.timeOption - Math.ceil( res.timer/60)}`.padStart(2 , "0")
         let seconds = "00";
        if(res.timer % 60 != 0){
          seconds = `${60 - res.timer%60}`.padStart(2 , "0")
@@ -73,6 +73,7 @@ const text = document.createElement('input');
 text.type = "text";
 text.placeholder = "Enter Your Todo";
 text.value =taskArray[taskNum];
+text.classList.add("taskcontainer-text-area");
 
 text.addEventListener("change", () => {
     taskArray[taskNum] = text.value;
@@ -84,6 +85,7 @@ const deleteBtn  = document.createElement('input');
 
 deleteBtn.type = "button";
 deleteBtn.value = "X";
+deleteBtn.classList.add("taskcontainer-deletebtn");
 
 deleteBtn.addEventListener("click", () =>{
 deleteTask(taskNum)
